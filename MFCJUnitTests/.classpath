@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipCrawler"/>
+	<classpathentry kind="lib" path="/Library/Java/Extensions/jsoup-1.8.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/Extensions/jsoup-1.8.3.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/Extensions/jsoup-1.8.3-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipSharedAssets"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
