@@ -1,3 +1,4 @@
+package com.mft.crawler;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -17,22 +18,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.mfc.netcrawler.MFC_NetCrawler;
+import com.mfc.netcrawler.MFC_NetCrawlerManager;
+import com.mfc.netcrawler.MFC_WebsiteDAO;
+import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
 import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import mfc_analyzer.MFC_SourceCodeAnalyzerManager;
-import mfc_netcrawler.MFC_NetCrawler;
-import mfc_netcrawler.MFC_NetCrawlerManager;
-import mfc_netcrawler.MFC_TempDB;
 
 
 public class JUT_MFC_TempDB {
-	static MFC_TempDB db;
+	static MFC_WebsiteDAO db;
 	private String testURL = "www.here.com";
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// Create & test database connection
-		db = new MFC_TempDB();
+		db = new MFC_WebsiteDAO();
 		assertFalse("DB not connected", db.con.isClosed());	//ensure connection is built and opened
 	}
 

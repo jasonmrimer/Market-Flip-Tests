@@ -1,3 +1,4 @@
+package com.mft.crawler;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -14,11 +15,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.apple.jobjc.Utils.Strings;
-
-import mfc_analyzer.MFC_SourceCodeAnalyzer;
-import mfc_analyzer.MFC_SourceCodeAnalyzerManager;
-import mfc_netcrawler.MFC_NetCrawler;
-import mfc_netcrawler.MFC_NetCrawlerManager;
+import com.mfc.netcrawler.MFC_NetCrawler;
+import com.mfc.netcrawler.MFC_NetCrawlerManager;
+import com.mfc.scanalyzer.MFC_SourceCodeAnalyzer;
+import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
 
 public class JUT_MFC_SourceCodeAnalyzer {
 	static	MFC_SourceCodeAnalyzer	analyzer;

@@ -1,3 +1,4 @@
+package com.mft.crawler;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
@@ -9,9 +10,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import mfc_netcrawler.MFC_NetCrawler;
+import com.mfc.netcrawler.MFC_NetCrawler;
 
-public class JUT_MFC_NetCrawler {
+public class JUT_MFC_NetCrawlerV1 {
 	static MFC_NetCrawler	netCrawler;
 	static String			startURL	=	"http://jsoup.org";
 	

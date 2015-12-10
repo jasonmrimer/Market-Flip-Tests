@@ -1,3 +1,4 @@
+package com.mft.crawler;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
@@ -11,12 +12,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import mfc_analyzer.MFC_SourceCodeAnalyzerManager;
+import com.mfc.netcrawler.MFC_NetCrawler;
+import com.mfc.netcrawler.MFC_NetCrawlerManager;
+import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
 
 import org.jsoup.nodes.Document;
-
-import mfc_netcrawler.MFC_NetCrawler;
-import mfc_netcrawler.MFC_NetCrawlerManager;
 
 public class JUT_MFC_NetCrawlerManager {
 	private static BlockingQueue<Document>	bqMFSourceCode	=	new ArrayBlockingQueue<Document>(

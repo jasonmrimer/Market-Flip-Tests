@@ -1,4 +1,4 @@
-package com.marketflip.jut;
+package com.mft.crawler;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
