@@ -27,6 +27,9 @@ import org.junit.Test;
  */
 public class JUT_HTML {
 
+	final ClassLoader	loader				= this.getClass().getClassLoader();
+	final String		htmlResourceFolder	= "html/";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -50,10 +53,10 @@ public class JUT_HTML {
 	public void GetLocalResource_RelativePathWithURL_CorrectPath() {
 		String projectPath = getClass().getProtectionDomain().getCodeSource().getLocation()
 				.getPath();
-		projectPath += "com/mft/crawler/";
+		projectPath += "html/";
 		String fileName = "TestHTMLDoc.html";
 		String expectedPath = projectPath + fileName;
-		String actualPath = getClass().getResource(fileName).getPath();
+		String actualPath = loader.getResource(htmlResourceFolder + fileName).getPath();
 		assertEquals(expectedPath, actualPath);
 	}
 
@@ -70,7 +73,8 @@ public class JUT_HTML {
 		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		String charSetName = "UTF-8"; // used to determine how the HTML parses
 		// manipulate fields
-		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		// get URL to use for paths later
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
 		String testFilePath = testFileURL.getPath(); // use URL to get path
 		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
 		Document jsDoc = Jsoup.parse(testFile, charSetName);
@@ -95,7 +99,8 @@ public class JUT_HTML {
 		ArrayList<String> actualLinkArray = new ArrayList<String>();
 		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		String charSetName = "UTF-8"; // used to determine how the HTML parses
-		Document jsDoc = Jsoup.parse(new File(getClass().getResource(testFileName).getPath()),
+		Document jsDoc = Jsoup.parse(
+				new File(loader.getResource(htmlResourceFolder + testFileName).getPath()),
 				charSetName);
 		// add links from doc to array
 		Elements links = jsDoc.select("a[href]");
@@ -111,7 +116,8 @@ public class JUT_HTML {
 		String expectedTitle = "New Super Mario Bros. (Wii) - Walmart.com"; // <title>
 		String testFileName = "TestWalmartSuperMarioBrosWii.html"; // name of file
 		// manipulate fields
-		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		// get URL to use for paths later
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
 		String testFilePath = testFileURL.getPath(); // use URL to get path
 		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
 		Document jsDoc = Jsoup.parse(testFile, "UTF-8");
@@ -119,4 +125,17 @@ public class JUT_HTML {
 		assertEquals(expectedTitle, actualTitle);
 	}
 
+	@Test
+	public void RetrieveFilePath_LocalHTMLFileInResources_HTMLFilePath() throws Exception {
+		// Test Variables
+		String expectedPath, actualPath;
+		final ClassLoader loader = this.getClass().getClassLoader();
+		// Expected
+		// change to bin as it builds the file to the bin to retrieve at runtime
+		expectedPath = "/Users/Atlas/GCloud/marketflip-tests/MFCJUnitTests/bin/html/LocationTest.html";
+		// Actual
+		actualPath = loader.getResource("html/LocationTest.html").getPath();
+		// Test
+		assertEquals(expectedPath, actualPath);
+	}
 }

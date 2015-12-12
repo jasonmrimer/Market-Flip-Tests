@@ -10,6 +10,7 @@ package com.mft.crawler;
 import static org.junit.Assert.*;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.After;
@@ -57,12 +58,32 @@ public class JIT_MFC_NetCralwer {
 		// Test variables
 		String expectedToString, actualToString;
 		// Expected
-		String testFileName = "HTMLTest_Links.html"; // name of file
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
 		expectedToString = "MFC_NetCrawler object with database for: " + testFileURL.getPath();
 		// Actual
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, testFileURL.getPath());
 		actualToString = netCrawler.toString();
 		assertEquals(expectedToString, actualToString);
+	}
+
+	/**
+	 * The purose of this test is to run a complete call of the NetCrawler. That call should insert
+	 * the visited website URL into the Website Database; this test checks whether it added it to
+	 * the database.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void Call_LocalHTMLFile_URLAddedToDatabase() throws Exception {
+		// Test Variables
+		String expectedResultSetToString, actualResultSetToString;
+		// Expected
+		
+//		expectedResultSetToString = testFilePath;  
+		// Actual
+
+		// Test
+
 	}
 }

@@ -33,6 +33,9 @@ import com.mfc.netcrawler.MFC_WebsiteDAO;
 
 public class JUT_MFC_NetCrawler {
 
+	final ClassLoader	loader				= this.getClass().getClassLoader();
+	final String		htmlResourceFolder	= "html/";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -58,8 +61,8 @@ public class JUT_MFC_NetCrawler {
 		// Test variables
 		String expectedToString, actualToString;
 		// Expected
-		String testFileName = "HTMLTest_Links.html"; // name of file
-		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
 		expectedToString = "MFC_NetCrawler object without database for: " + testFileURL.getPath();
 		// Actual
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(testFileURL.getPath());
@@ -77,10 +80,10 @@ public class JUT_MFC_NetCrawler {
 	public void netCrawlerCall_localTestHTMLFile_jSoupDocByTitle() throws IOException {
 		// set traits
 		String expectedTitle = "HTML Test for Links"; // <title>
-		String testFileName = "HTMLTest_Links.html"; // name of file
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		String charSetName = "UTF-8"; // used to determine how the HTML parses
 		// manipulate fields
-		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
 		String testFilePath = testFileURL.getPath(); // use URL to get path
 		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
 		Document jsDoc = Jsoup.parse(testFile, charSetName);
@@ -103,8 +106,8 @@ public class JUT_MFC_NetCrawler {
 		expectedLinkArray.add("http://www.link2.com");
 		expectedLinkArray.add("http://www.link3.com");
 		// create actual array
-		String testFileName = "HTMLTest_Links.html"; // name of file
-		String testFilePath = getClass().getResource(testFileName).getPath();
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
+		String testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(testFilePath);
 		netCrawler.call();
 		Collection<String> actualLinkArray = netCrawler.getURLs();
@@ -132,15 +135,14 @@ public class JUT_MFC_NetCrawler {
 		link1FileName = "LinkedHTMLFile1.html";
 		link2FileName = "LinkedHTMLFile2.html";
 		link3FileName = "LinkedHTMLFile3.html";
-		testFilePath = getClass().getResource(testFileName).getPath();
-		link1FilePath = getClass().getResource(link1FileName).getPath();
-		link2FilePath = getClass().getResource(link2FileName).getPath();
-		link3FilePath = getClass().getResource(link3FileName).getPath();
+		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+		link1FilePath = loader.getResource(htmlResourceFolder + link1FileName).getPath();
+		link2FilePath = loader.getResource(htmlResourceFolder + link2FileName).getPath();
+		link3FilePath = loader.getResource(htmlResourceFolder + link3FileName).getPath();
 		testFileBaseURI = testFilePath.replace(testFileName, "");
 		System.out.println(testFileBaseURI);
 		System.out.println(link1FilePath);
-		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath,
-				link3FilePath));
+		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath));
 		// Actual
 		netCrawler = new MFC_NetCrawler(testFilePath, testFileBaseURI);
 		netCrawler.call();
