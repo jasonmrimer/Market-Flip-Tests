@@ -67,7 +67,7 @@ public class JUT_HTML {
 	public void CreateHTMLDoc_LocalHTMLDoc_HTMLDocWithCorrectTitle() throws IOException {
 		// set traits
 		String expectedTitle = "HTML Test for Links"; // <title>
-		String testFileName = "HTMLTest_Links.html"; // name of file
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		String charSetName = "UTF-8"; // used to determine how the HTML parses
 		// manipulate fields
 		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
@@ -93,7 +93,7 @@ public class JUT_HTML {
 		expectedLinkArray.add("http://www.link3.com");
 		// create actual array
 		ArrayList<String> actualLinkArray = new ArrayList<String>();
-		String testFileName = "HTMLTest_Links.html"; // name of file
+		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
 		String charSetName = "UTF-8"; // used to determine how the HTML parses
 		Document jsDoc = Jsoup.parse(new File(getClass().getResource(testFileName).getPath()),
 				charSetName);
