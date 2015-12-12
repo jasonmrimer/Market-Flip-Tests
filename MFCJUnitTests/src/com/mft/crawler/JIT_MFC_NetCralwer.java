@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,12 +20,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.google.appengine.repackaged.org.apache.commons.codec.digest.DigestUtils;
 import com.mfc.netcrawler.MFC_NetCrawler;
 import com.mfc.netcrawler.MFC_WebsiteDAO;
 
 public class JIT_MFC_NetCralwer {
 
-	private static MFC_WebsiteDAO database;
+	private static MFC_WebsiteDAO	database;
+	final ClassLoader				loader				= this.getClass().getClassLoader();
+	final String					htmlResourceFolder	= "html/";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -59,7 +63,9 @@ public class JIT_MFC_NetCralwer {
 		String expectedToString, actualToString;
 		// Expected
 		String testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
-		URL testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName); // get URL to use
+																					// for paths
+																					// later
 		expectedToString = "MFC_NetCrawler object with database for: " + testFileURL.getPath();
 		// Actual
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, testFileURL.getPath());
@@ -75,15 +81,21 @@ public class JIT_MFC_NetCralwer {
 	 * @throws Exception
 	 */
 	@Test
-	public void Call_LocalHTMLFile_URLAddedToDatabase() throws Exception {
+	public void Call_LocalHTMLFile_URLArrayListFromDatabase() throws Exception {
 		// Test Variables
-		String expectedResultSetToString, actualResultSetToString;
+		ArrayList<String> expectedResultSetToString = new ArrayList<String>();
+		ArrayList<String> actualResultSetToString = new ArrayList<String>();
+		String testFileName, testFilePath, testFilePathAfterHash;
 		// Expected
-		
-//		expectedResultSetToString = testFilePath;  
+		testFileName = "HTMLTest_AbsoluteReferences.html"; // name of file
+		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+		testFilePathAfterHash = DigestUtils.sha256Hex(testFilePath);
+		expectedResultSetToString.add(testFilePathAfterHash);
 		// Actual
-
+		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, testFilePath);
+		netCrawler.call();
+		actualResultSetToString = netCrawler.getDatabase().getURLResultSetAsList(testFilePathAfterHash);
 		// Test
-
+		assertEquals(expectedResultSetToString, actualResultSetToString);
 	}
 }
