@@ -149,7 +149,6 @@ public class JUT_HTML {
 		// get URL to use for paths later
 		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
 //		URL t = new U
-		testFileURL.
 		// Expected
 		System.out.println(testFileURL.getHost());
 		System.out.println(testFileURL.getRef());
