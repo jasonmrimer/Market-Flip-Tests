@@ -1,35 +1,41 @@
 package com.mft.crawler;
+
 import static org.junit.Assert.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Future;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.jsoup.nodes.Document;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawler;
 import com.mfc.netcrawler.MFC_NetCrawlerManager;
+import com.mfc.netcrawler.MFC_NetCrawler;
 import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
 
-import org.jsoup.nodes.Document;
-
+/**
+ * The purpose of this test class is to run tests on the NetCrawlerManager and its various methods.
+ * The unit tests will rely on local files to increase speed and consistency of tests while actual
+ * connections to the Internet shall reside in the integration tests (JIT).
+ * 
+ * @author Atlas
+ *
+ */
 public class JUT_MFC_NetCrawlerManager {
-	private static BlockingQueue<Document>	bqMFSourceCode	=	new ArrayBlockingQueue<Document>(
-														MFC_SourceCodeAnalyzerManager.MFC_MAX_ANALYZER_QUEUE_COUNT);
-	private static MFC_NetCrawlerManager	netCrawlerManager;
-	private static String					startURL		=	"http://jsoup.org";
-	
+
+	private static BlockingQueue<Document>	bqMFSourceCode		= new ArrayBlockingQueue<Document>(
+			MFC_SourceCodeAnalyzerManager.MFC_MAX_ANALYZER_QUEUE_COUNT);
+	final ClassLoader						loader				= this.getClass().getClassLoader();
+	final String							htmlResourceFolder	= "html/";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode);
-		assertTrue("Class not created", netCrawlerManager != null);
-		assertTrue("Crawler not created", netCrawlerManager.getNetCrawler() != null);
-		assertFalse("DB not connected", netCrawlerManager.getDatabase().con.isClosed());	//ensure connection is built and opened
 	}
 
 	@AfterClass
@@ -38,34 +44,53 @@ public class JUT_MFC_NetCrawlerManager {
 
 	@Before
 	public void setUp() throws Exception {
-		assertFalse("DB not connected", netCrawlerManager.getDatabase().con.isClosed());	//ensure connection is built and opened
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	public void testManagerCreated() {
-//		assertTrue("Class not created", netCrawlerManager != null);
-//	}
-//	@Test
-//	public void testCrawlerCreated() {
-//		assertTrue("Crawler not created", netCrawlerManager.getNetCrawler() != null);
-//	}
-//	@Test
-//	public void testDBConnection() throws SQLException {
-//		assertFalse("DB not connected", netCrawlerManager.getDatabase().con.isClosed());	//ensure connection is built and opened
-//	}
-	
+	/**
+	 * The purose of this test is to construct an instance of NetCrawlerManager with a specified
+	 * blockingQueue size then test the proper creation of that constructor comparing the ToString
+	 * from the instance.
+	 *
+	 * @throws Exception
+	 */
 	@Test
-	public void testURLArrayCreation() {
-		ArrayList<String> URLs = new ArrayList<String>();
-		URLs.addAll(netCrawlerManager.getNetCrawler().getURLs());
-		assertTrue("ArrayList empty", URLs.isEmpty());
-		for (String URL : URLs) {
-			System.out.println(URL);
-		}
+	public void Construct_BlockingQueueSize3_ClassToStringMatch() throws Exception {
+		// Test Variables
+		String expectedClassToString, actualClassToString;
+		BlockingQueue<Document> bq;
+		MFC_NetCrawlerManager netCrawlerManager;
+		// Expected
+		expectedClassToString = "MFC_NetCrawlerManager object with BlockingQueue size: 3";
+		// Actual
+		bq = new ArrayBlockingQueue<Document>(3);
+		netCrawlerManager = new MFC_NetCrawlerManager(bq, "", true);
+		actualClassToString = netCrawlerManager.toString();
+		// Test
+		assertEquals(expectedClassToString, actualClassToString);
 	}
-	
+
+	@Test
+	public void Run_HTMLDocWith3Links_Create3Futures() throws Exception {
+		// Test Variables
+		int expectedFuturesArraySize, actualFuturesArraySize;
+		ArrayList<Future<MFC_NetCrawler>> futuresArray;
+		String testFileName, testFilePath;
+		MFC_NetCrawlerManager netCrawlerManager;
+		// Expected
+		testFileName = "HTMLTest_RelativeReferences.html"; // name of file
+		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+		expectedFuturesArraySize = 3;
+		// Actual
+		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
+		netCrawlerManager.run();
+		futuresArray = netCrawlerManager.getFuturesArray();
+		actualFuturesArraySize = futuresArray.size();
+		// Test
+		assertEquals(expectedFuturesArraySize, actualFuturesArraySize);
+	}
+
 }

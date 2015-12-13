@@ -140,14 +140,11 @@ public class JUT_MFC_NetCrawler {
 		link2FilePath = loader.getResource(htmlResourceFolder + link2FileName).getPath();
 		link3FilePath = loader.getResource(htmlResourceFolder + link3FileName).getPath();
 		testFileBaseURI = testFilePath.replace(testFileName, "");
-		System.out.println(testFileBaseURI);
-		System.out.println(link1FilePath);
 		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath));
 		// Actual
 		netCrawler = new MFC_NetCrawler(testFilePath, testFileBaseURI);
 		netCrawler.call();
 		actualURLs = netCrawler.getURLs();
-		System.out.println(netCrawler.getSiteDoc().baseUri());
 		// Test
 		assertEquals(expectedURLs, actualURLs);
 	}
@@ -183,8 +180,8 @@ public class JUT_MFC_NetCrawler {
 		// Expected
 		expectedJSoupDoc = null;
 		// Actual
-		testFileName = "SiteWithoutHTMLDoc"; // name of file
-		testFileURL = getClass().getResource(testFileName); // get URL to use for paths later
+		testFileName = "FileWithoutHTMLDoc"; // name of file
+		testFileURL = loader.getResource(htmlResourceFolder + testFileName); // get URL to use for paths later
 		testFilePath = testFileURL.getPath(); // use URL to get path
 		netCrawler = new MFC_NetCrawler(testFilePath);
 		netCrawler.call();

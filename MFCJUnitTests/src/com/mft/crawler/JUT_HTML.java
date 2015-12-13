@@ -138,4 +138,25 @@ public class JUT_HTML {
 		// Test
 		assertEquals(expectedPath, actualPath);
 	}
+	
+	@Test
+	public void URLTesting() throws Exception {
+		// Test Variables
+		// set traits
+		String expectedTitle = "HTMLTest_RelativeReferences.html"; // <title>
+		String testFileName = "HTMLTest_RelativeReferences.html"; // name of file
+		// manipulate fields
+		// get URL to use for paths later
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
+//		URL t = new U
+		testFileURL.
+		// Expected
+		System.out.println(testFileURL.getHost());
+		System.out.println(testFileURL.getRef());
+		System.out.println(testFileURL.getFile());
+		// Actual
+
+		// Test
+
+	}
 }

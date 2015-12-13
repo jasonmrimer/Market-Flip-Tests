@@ -9,18 +9,21 @@ package com.mft.crawler;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.appengine.repackaged.org.apache.commons.codec.digest.DigestUtils;
 import com.mfc.netcrawler.MFC_NetCrawler;
 import com.mfc.netcrawler.MFC_WebsiteDAO;
 
@@ -94,8 +97,51 @@ public class JIT_MFC_NetCralwer {
 		// Actual
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, testFilePath);
 		netCrawler.call();
-		actualResultSetToString = netCrawler.getDatabase().getURLResultSetAsList(testFilePathAfterHash);
+		actualResultSetToString = netCrawler.getDatabase()
+				.getURLResultSetAsList(testFilePathAfterHash);
 		// Test
 		assertEquals(expectedResultSetToString, actualResultSetToString);
+	}
+
+	/**
+	 * The purose of this test is to feed the NetCrawler a website without an HTML document to test
+	 * if it still adds the website to the database by returning a result set as an Array List and
+	 * testing whether the site is in the database.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void Call_FakeWebsiteWithoutHTMLDoc_URLInDatabaseViaArrayList() throws Exception {
+		// Test Variables
+		ArrayList<String> expectedResultSetToString = new ArrayList<String>();
+		ArrayList<String> actualResultSetToString = new ArrayList<String>();
+		String fakeWebsite, fakeWebsiteAfterHash;
+		// Expected
+		fakeWebsite = "http://www.fakewebsite.com"; // name of file
+		fakeWebsiteAfterHash = DigestUtils.sha256Hex(fakeWebsite);
+		expectedResultSetToString.add(fakeWebsiteAfterHash);
+		// Actual
+		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, fakeWebsite);
+		netCrawler.call();
+		actualResultSetToString = netCrawler.getDatabase()
+				.getURLResultSetAsList(fakeWebsiteAfterHash);
+		// Test
+		assertEquals(expectedResultSetToString, actualResultSetToString);
+	}
+
+	@Test
+	public void Call_ActualJSoupWebsite_SiteDocument() throws Exception {
+		// Test Variables
+		String expectedTitle, actualTitle, website;
+		// Expected
+		website = "http://jsoup.org/"; // name of file
+		expectedTitle = "jsoup Java HTML Parser, with best of DOM, CSS, and jquery"; // <title>
+		// Actual
+		MFC_NetCrawler netCrawler = new MFC_NetCrawler(database, website);
+		netCrawler.call();
+		Document siteDoc = netCrawler.getSiteDoc();
+		actualTitle = siteDoc.title();
+		// Test
+		assertEquals(expectedTitle, actualTitle);
 	}
 }
