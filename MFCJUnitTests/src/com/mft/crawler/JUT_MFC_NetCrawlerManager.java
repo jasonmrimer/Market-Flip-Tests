@@ -7,7 +7,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.jsoup.nodes.Document;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -73,24 +72,53 @@ public class JUT_MFC_NetCrawlerManager {
 		assertEquals(expectedClassToString, actualClassToString);
 	}
 
+	/**
+	 * The purose of this test is to ensure the NetCrawlerManager creates a number of futures equal
+	 * to the original HTML Doc and the number of links inside it thereby indicating it processed
+	 * those links.
+	 *
+	 * @throws Exception
+	 */
 	@Test
-	public void Run_HTMLDocWith3Links_Create3Futures() throws Exception {
+	public void Run_HTMLDocWith3Links_Count4Futures() throws Exception {
 		// Test Variables
-		int expectedFuturesArraySize, actualFuturesArraySize;
-		ArrayList<Future<MFC_NetCrawler>> futuresArray;
+		int expectedFuturesCount, actualFuturesCount;
 		String testFileName, testFilePath;
 		MFC_NetCrawlerManager netCrawlerManager;
 		// Expected
 		testFileName = "HTMLTest_RelativeReferences.html"; // name of file
 		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
-		expectedFuturesArraySize = 3;
+		expectedFuturesCount = 4;
 		// Actual
 		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
-		netCrawlerManager.run();
-		futuresArray = netCrawlerManager.getFuturesArray();
-		actualFuturesArraySize = futuresArray.size();
+		Thread ncmThread = new Thread(netCrawlerManager);
+		ncmThread.start();
+		while (!ncmThread.isAlive()){
+			System.out.println("waiting");
+		}
+		actualFuturesCount = netCrawlerManager.getFuturesCount();
 		// Test
-		assertEquals(expectedFuturesArraySize, actualFuturesArraySize);
+		assertEquals(expectedFuturesCount, actualFuturesCount);
 	}
+
+	//	@Test
+	//	public void Run_HTMLDocWith3Links_Create3Futures() throws Exception {
+	//		// Test Variables
+	//		int expectedFuturesArraySize, actualFuturesArraySize;
+	//		ArrayList<Future<MFC_NetCrawler>> futuresArray;
+	//		String testFileName, testFilePath;
+	//		MFC_NetCrawlerManager netCrawlerManager;
+	//		// Expected
+	//		testFileName = "HTMLTest_RelativeReferences.html"; // name of file
+	//		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+	//		expectedFuturesArraySize = 3;
+	//		// Actual
+	//		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
+	//		netCrawlerManager.run();
+	//		futuresArray = netCrawlerManager.getFuturesArray();
+	//		actualFuturesArraySize = futuresArray.size();
+	//		// Test
+	//		assertEquals(expectedFuturesArraySize, actualFuturesArraySize);
+	//	}
 
 }
