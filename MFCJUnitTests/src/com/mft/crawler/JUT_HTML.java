@@ -2,6 +2,11 @@ package com.mft.crawler;
 
 import static org.junit.Assert.*;
 
+import org.apache.commons.validator.Validator;
+import org.apache.commons.validator.ValidatorAction;
+import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
+import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigitTest;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -111,21 +116,6 @@ public class JUT_HTML {
 	}
 
 	@Test
-	public void CreateHTMLDoc_TestWalmartSuperMario_DocByTitle() throws Exception {
-		// set traits
-		String expectedTitle = "New Super Mario Bros. (Wii) - Walmart.com"; // <title>
-		String testFileName = "TestWalmartSuperMarioBrosWii.html"; // name of file
-		// manipulate fields
-		// get URL to use for paths later
-		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
-		String testFilePath = testFileURL.getPath(); // use URL to get path
-		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
-		Document jsDoc = Jsoup.parse(testFile, "UTF-8");
-		String actualTitle = jsDoc.title();
-		assertEquals(expectedTitle, actualTitle);
-	}
-
-	@Test
 	public void RetrieveFilePath_LocalHTMLFileInResources_HTMLFilePath() throws Exception {
 		// Test Variables
 		String expectedPath, actualPath;
@@ -138,24 +128,62 @@ public class JUT_HTML {
 		// Test
 		assertEquals(expectedPath, actualPath);
 	}
-	
+
+	/*
+	 * Walmart Tets
+	 * This section tests all of the HTML documents from and specific actions related to Walmart.
+	 */
+
+	/**
+	 * 
+	 * The purose of this test is to create an HTML document from a local file that is actually
+	 * source code from a Walmart website. It will test the document's parsed title with the actual
+	 * title via string check.
+	 *
+	 * @throws Exception
+	 */
 	@Test
-	public void URLTesting() throws Exception {
-		// Test Variables
+	public void CreateHTMLDoc_TestWalmartSuperMario_DocByTitle() throws Exception {
 		// set traits
-		String expectedTitle = "HTMLTest_RelativeReferences.html"; // <title>
-		String testFileName = "HTMLTest_RelativeReferences.html"; // name of file
+		String expectedTitle, actualTitle;
+		expectedTitle = "New Super Mario Bros. (Wii) - Walmart.com"; // <title>
+		String testFileName = "TestWalmartSuperMarioBrosWii.html"; // name of file
 		// manipulate fields
 		// get URL to use for paths later
 		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
-//		URL t = new U
+		String testFilePath = testFileURL.getPath(); // use URL to get path
+		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
+		Document jsDoc = Jsoup.parse(testFile, "UTF-8");
+		actualTitle = jsDoc.title();
+		assertEquals(expectedTitle, actualTitle);
+	}
+	
+	@Test
+	public void ExtractUPC_TestWalmartSuperMarioBrosWii_MatchingUPC() throws Exception {
+		// Test Variables
+		String expectedUPC, actualUPC;
+		String testFileName;
 		// Expected
-		System.out.println(testFileURL.getHost());
-		System.out.println(testFileURL.getRef());
-		System.out.println(testFileURL.getFile());
+		expectedUPC = "045496901738";
 		// Actual
-
+		testFileName = "TestWalmartSuperMarioBrosWii.html"; // name of file
+		URL testFileURL = loader.getResource(htmlResourceFolder + testFileName);
+		String testFilePath = testFileURL.getPath(); // use URL to get path
+		File testFile = new File(testFilePath); // temp file to pass to JSoup parser
+		Document jsDoc = Jsoup.parse(testFile, "UTF-8");
+		actualUPC = jsDoc.select("meta[property=og:upc").attr("content");
 		// Test
-
+		assertEquals(expectedUPC, actualUPC);
+	}
+	
+	@Test
+	public void ValidateUPC_SuperMarioBrosWii_ValidUPC() throws Exception {
+		// Test Variables
+		String expectedUPC, actualUPC;
+		// Expected
+		expectedUPC = "045496901738"; 
+		// Test
+		EAN13CheckDigit validator = new EAN13CheckDigit();
+		assertTrue(validator.isValid(expectedUPC));
 	}
 }
