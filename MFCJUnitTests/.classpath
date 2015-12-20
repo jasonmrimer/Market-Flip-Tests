@@ -3,18 +3,18 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipCrawler"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipSharedAssets"/>
-	<classpathentry kind="lib" path="lib/jsoup-1.8.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/jsoup-1.8.3-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jsoup-1.8.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.10-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.10-sources.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.10-test-sources.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.10-tests.jar"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/MarketFlipCrawler"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/MarketFlipSharedAssets"/>
+	<classpathentry exported="true" kind="lib" path="lib/jsoup-1.8.3-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jsoup-1.8.3-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jsoup-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.10-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.10-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.10-test-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.10-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
