@@ -232,4 +232,5 @@ public class JUT_HTML {
 		}
 		assertEquals(expectedLinkArray, actualLinkArray);
 	}
+
 }

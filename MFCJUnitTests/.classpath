@@ -21,16 +21,5 @@
 	<classpathentry kind="lib" path="lib/commons-validator-1.5.0/commons-validator-1.5.0-test-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-validator-1.5.0/commons-validator-1.5.0-tests.jar"/>
 	<classpathentry kind="lib" path="lib/commons-validator-1.5.0/commons-validator-1.5.0.jar"/>
-	<classpathentry kind="lib" path="lib/google-cloud-service-client/appengine-gcs-client-0.5-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/google-cloud-service-client/appengine-gcs-client-0.5-sources.jar"/>
-	<classpathentry kind="lib" path="lib/google-cloud-service-client/appengine-gcs-client-0.5.jar"/>
-	<classpathentry kind="lib" path="lib/guava/guava-18.0.jar"/>
-	<classpathentry kind="lib" path="lib/joda-time-2.9.1/joda-time-2.9.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/joda-time-2.9.1/joda-time-2.9.1-no-tzdb.jar"/>
-	<classpathentry kind="lib" path="lib/joda-time-2.9.1/joda-time-2.9.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/joda-time-2.9.1/joda-time-2.9.1.jar"/>
-	<classpathentry kind="lib" path="lib/storage/google-api-services-storage-v1-rev56-1.21.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/storage/google-api-services-storage-v1-rev56-1.21.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/storage/google-api-services-storage-v1-rev56-1.21.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
