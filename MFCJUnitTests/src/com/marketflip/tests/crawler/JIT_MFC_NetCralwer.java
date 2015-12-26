@@ -5,7 +5,7 @@
  * those interactions. Note that these integrations tests inheritantly take more time than the unit
  * tests and are designed to run separately in order to choose long/short testing times.
  */
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
@@ -24,8 +24,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawler;
-import com.mfc.netcrawler.MFC_WebsiteDAO;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
+import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
 
 public class JIT_MFC_NetCralwer {
 

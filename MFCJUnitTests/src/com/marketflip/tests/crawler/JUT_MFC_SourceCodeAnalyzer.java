@@ -1,4 +1,4 @@
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
@@ -15,9 +15,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
+import com.marketflip.crawler.scanalyzer.MFC_SourceCodeAnalyzer;
 import com.marketflip.shared.products.MF_Product;
-import com.mfc.netcrawler.MFC_NetCrawlerManager;
-import com.mfc.scanalyzer.MFC_SourceCodeAnalyzer;
 
 public class JUT_MFC_SourceCodeAnalyzer {
 

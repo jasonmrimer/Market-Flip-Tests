@@ -1,11 +1,8 @@
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
-import org.apache.commons.validator.Validator;
-import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
-import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigitTest;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +31,7 @@ public class JUT_HTML {
 
 	final ClassLoader	loader				= this.getClass().getClassLoader();
 	final String		htmlResourceFolder	= "html/";
+	final String		bucketName			= "http://www.lovenirds.com/"; // Google Developer Console bucket that acts as a static website
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -157,7 +155,7 @@ public class JUT_HTML {
 		actualTitle = jsDoc.title();
 		assertEquals(expectedTitle, actualTitle);
 	}
-	
+
 	@Test
 	public void ExtractUPC_TestWalmartSuperMarioBrosWii_MatchingUPC() throws Exception {
 		// Test Variables
@@ -175,15 +173,64 @@ public class JUT_HTML {
 		// Test
 		assertEquals(expectedUPC, actualUPC);
 	}
-	
+
 	@Test
 	public void ValidateUPC_SuperMarioBrosWii_ValidUPC() throws Exception {
 		// Test Variables
 		String expectedUPC, actualUPC;
 		// Expected
-		expectedUPC = "045496901738"; 
+		expectedUPC = "045496901738";
 		// Test
 		EAN13CheckDigit validator = new EAN13CheckDigit();
 		assertTrue(validator.isValid(expectedUPC));
 	}
+
+	@Test
+	public void RetrieveFileFromBucket_FileName_FileByTitle() throws Exception {
+		// Test Variables
+		String expectedTitle, actualTitle;
+		String fileName;
+		Document jsDoc;
+		URL url;
+		// Expected
+		expectedTitle = "HTML Test using Relative References";
+		// Actual
+		fileName = "HTMLTest_RelativeReferences.html";
+		url = new URL(bucketName + fileName);
+		jsDoc = Jsoup.parse(url, 5000);
+		actualTitle = jsDoc.title();
+		// Test
+		assertEquals(expectedTitle, actualTitle);
+	}
+	
+	/**
+	 * The purpose of this test is to extract all links from a fake HTML document and test
+	 * the array against the known array of links.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public void ExtractLinksFromHTMLDoc_BucketHTMLDoc_CorrectArrayOfLinks() throws IOException {
+		// Test Variables
+		ArrayList<String> expectedLinkArray = new ArrayList<String>();
+		ArrayList<String> actualLinkArray = new ArrayList<String>();
+		String fileName;
+		Document jsDoc;
+		URL url;
+		// Expected
+		expectedLinkArray.add("http://www.lovenirds.com/LinkedHTMLFile1.html");
+		expectedLinkArray.add("http://www.lovenirds.com/LinkedHTMLFile2.html");
+		expectedLinkArray.add("http://www.lovenirds.com/LinkedHTMLFile3.html");
+		// Actual
+		fileName = "HTMLTest_RelativeReferences.html";
+		url = new URL(bucketName + fileName);
+		jsDoc = Jsoup.parse(url, 5000);
+		// add links from doc to array
+		Elements links = jsDoc.select("a[href]");
+		for (Element link : links) {
+			actualLinkArray.add(link.attr("abs:href"));
+		}
+		assertEquals(expectedLinkArray, actualLinkArray);
+	}
+
 }

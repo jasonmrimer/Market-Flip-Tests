@@ -1,4 +1,4 @@
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
@@ -14,9 +14,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawlerManager;
-import com.mfc.netcrawler.MFC_NetCrawler;
-import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
+import com.marketflip.crawler.scanalyzer.MFC_SourceCodeAnalyzerManager;
 
 /**
  * The purpose of this test class is to run tests on the NetCrawlerManager and its various methods.
