@@ -5,7 +5,7 @@
  * those interactions. Note that these integrations tests inheritantly take more time than the unit
  * tests and are designed to run separately in order to choose long/short testing times.
  */
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 

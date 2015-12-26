@@ -1,4 +1,4 @@
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 

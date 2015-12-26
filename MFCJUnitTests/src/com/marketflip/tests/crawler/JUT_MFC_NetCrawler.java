@@ -1,4 +1,4 @@
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
@@ -35,6 +35,7 @@ public class JUT_MFC_NetCrawler {
 
 	final ClassLoader	loader				= this.getClass().getClassLoader();
 	final String		htmlResourceFolder	= "html/";
+	final String		bucketName			= "http://www.lovenirds.com/"; // Google Developer Console bucket that acts as a static website
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -130,19 +131,27 @@ public class JUT_MFC_NetCrawler {
 		String testFilePath, link1FilePath, link2FilePath, link3FilePath;
 		String testFileBaseURI;
 		MFC_NetCrawler netCrawler;
+		URL url;
 		// Expected
 		testFileName = "HTMLTest_RelativeReferences.html";
 		link1FileName = "LinkedHTMLFile1.html";
 		link2FileName = "LinkedHTMLFile2.html";
 		link3FileName = "LinkedHTMLFile3.html";
-		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
-		link1FilePath = loader.getResource(htmlResourceFolder + link1FileName).getPath();
-		link2FilePath = loader.getResource(htmlResourceFolder + link2FileName).getPath();
-		link3FilePath = loader.getResource(htmlResourceFolder + link3FileName).getPath();
+		testFilePath = bucketName + testFileName;
+		link1FilePath = bucketName + link1FileName;
+		link2FilePath = bucketName + link2FileName;
+		link3FilePath = bucketName + link3FileName;
+//		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+//		link1FilePath = loader.getResource(htmlResourceFolder + link1FileName).getPath();
+//		link2FilePath = loader.getResource(htmlResourceFolder + link2FileName).getPath();
+//		link3FilePath = loader.getResource(htmlResourceFolder + link3FileName).getPath();
 		testFileBaseURI = testFilePath.replace(testFileName, "");
 		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath));
 		// Actual
-		netCrawler = new MFC_NetCrawler(testFilePath, testFileBaseURI);
+//		netCrawler = new MFC_NetCrawler(testFilePath, testFileBaseURI);
+		netCrawler = new MFC_NetCrawler(testFilePath);
+		url = new URL(testFilePath);
+//		netCrawler = new MFC_NetCrawler(url);
 		netCrawler.call();
 		actualURLs = netCrawler.getURLs();
 		// Test

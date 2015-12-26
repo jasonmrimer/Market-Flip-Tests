@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mft.crawler;
+package com.marketflip.tests.crawler;
 
 import java.util.concurrent.BlockingQueue;
 
