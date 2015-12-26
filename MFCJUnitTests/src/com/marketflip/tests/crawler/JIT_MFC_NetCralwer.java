@@ -24,8 +24,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawler;
-import com.mfc.netcrawler.MFC_WebsiteDAO;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
+import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
 
 public class JIT_MFC_NetCralwer {
 

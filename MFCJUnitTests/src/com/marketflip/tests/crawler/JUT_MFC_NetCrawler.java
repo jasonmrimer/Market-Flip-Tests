@@ -20,16 +20,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawler;
-/**
- * These tests follow the Market Flip naming convention:
- * MethodBeingTested_ParametersOrConditionToTest_ExpectedOutcomeOfMethod()
- * 
- * It seems that nearly everything is an integration test because it requires connecting to an
- * external
- * source such as the website & product database or the Internet.
- */
-import com.mfc.netcrawler.MFC_WebsiteDAO;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
+import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
 
 public class JUT_MFC_NetCrawler {
 

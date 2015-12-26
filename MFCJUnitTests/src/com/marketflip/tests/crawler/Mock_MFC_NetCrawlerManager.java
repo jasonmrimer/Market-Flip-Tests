@@ -7,7 +7,7 @@ import java.util.concurrent.BlockingQueue;
 
 import org.jsoup.nodes.Document;
 
-import com.mfc.netcrawler.MFC_NetCrawlerManager;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
 
 
 /**

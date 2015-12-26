@@ -18,10 +18,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mfc.netcrawler.MFC_NetCrawler;
-import com.mfc.netcrawler.MFC_NetCrawlerManager;
-import com.mfc.netcrawler.MFC_WebsiteDAO;
-import com.mfc.scanalyzer.MFC_SourceCodeAnalyzerManager;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
+import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
+import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
+import com.marketflip.crawler.scanalyzer.MFC_SourceCodeAnalyzerManager;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 
