@@ -206,7 +206,8 @@ public class JIT_MF_InsertAndGetDAOTest {
 		DAO.addProductToCommit(product);
 		DAO.commitProductsToDatabase();
 
-		assertTrue(DAO.getProductSet().contains(UPC));
+		MF_Product testProduct = DAO.getProduct(product);
+		assertTrue(testProduct.equals(product));
 		DAO.delete(product);
 	}
 	
@@ -253,9 +254,12 @@ public class JIT_MF_InsertAndGetDAOTest {
 		DAO.commitProductsToDatabase();
 		
 		//multiple asserts are normally bad form, but I want to make sure ALL products were added.
-		assertTrue(DAO.getProductSet().contains(product1.getUPC()));
-		assertTrue(DAO.getProductSet().contains(product2.getUPC()));
-		assertTrue(DAO.getProductSet().contains(product3.getUPC()));
+		MF_Product testProduct1 = DAO.getProduct(product1);
+		MF_Product testProduct2 = DAO.getProduct(product2);
+		MF_Product testProduct3 = DAO.getProduct(product3);
+		assertTrue(testProduct1.equals(product1));
+		assertTrue(testProduct2.equals(product2));
+		assertTrue(testProduct3.equals(product3));
 		
 		DAO.delete(product1);
 		DAO.delete(product2);
@@ -482,28 +486,4 @@ public class JIT_MF_InsertAndGetDAOTest {
 		
 		assertTrue(DAO.delete(UPC));
 	}
-	
-	@Test
-	public void DeleteUPC_ValidUPC_ExpectNotInProductSet() throws SQLException {
-	
-		if (DAO != null) {
-			if (!DAO.isOpen()){
-				DAO.close();
-			}
-		}
-		DAO = new MF_ProductsDAO ("testing");
-		
-		String UPC = "0735340904465";
-		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
-		priceList.add(new MF_Price(25.22, "Amazon"));
-		MF_Product product = new MF_Product(UPC, priceList);
-		
-		DAO.addProductToCommit(product);
-		DAO.commitProductsToDatabase();
-		DAO.delete(UPC);
-		assertFalse(DAO.getProductSet().contains(UPC));
-	}
-	
-	
-
 }
