@@ -120,7 +120,7 @@ public class JUT_MFA_ShopperManager {
 		bq = new ArrayBlockingQueue<>(3);
 		shopperManager = new MFA_ShopperManager(bq, expectedFutureCount, true);
 		Thread smThread = new Thread(shopperManager);
-		smThread.run();
+		smThread.start();
 		while (smThread.isAlive()) {
 		}
 		actualFutureCount = shopperManager.getCompletedFutureCount();
@@ -151,5 +151,35 @@ public class JUT_MFA_ShopperManager {
 		actualArrayList = shopperManager.getArrayListOfShoppers();
 		// Test
 		assertEquals(expectedArrayList, actualArrayList);
+	}
+
+	/**
+	 * The purpose of this test is to check whether all the futures make it into the blocking queue
+	 * and the clean up loop (after futures finish but before shutdown) successfully handles all
+	 * completed futures to the blocking queue.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void Run_Futures3AndBlockingSize3_CompletedBQAdditionsEquals3() throws Exception {
+		// Test Variables
+		int expectedBQCount, actualBQCount;
+		MFA_ShopperManager shopperManager;
+		Thread smThread;
+		BlockingQueue bq;
+		int shopperLimit;
+		// Expected
+		expectedBQCount = 3;
+		// Actual
+		shopperLimit = 3;
+		bq = new ArrayBlockingQueue<>(3);
+		shopperManager = new MFA_ShopperManager(bq, shopperLimit, true);
+		smThread = new Thread(shopperManager);
+		smThread.start();
+		while (smThread.isAlive()) {
+		}
+		actualBQCount = shopperManager.getCompletedBlockingQueueAdditions();
+		// Test
+		assertEquals(expectedBQCount, actualBQCount);
 	}
 }
