@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import com.marketflip.shared.products.MF_Price;
-import com.marketflip.shared.products.MF_PricePoint;
+import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.products.MF_Product;
-import com.marketflip.shared.products.MF_Shopper;
+import com.marketflip.shared.shopper.MF_Shopper;
 
 /**
  * This tests methods in the MF_Shopper class
@@ -19,7 +19,7 @@ import com.marketflip.shared.products.MF_Shopper;
  *
  */
 
-public class JUT_MF_ShopperTest {
+public class JUT_MF_Shopper {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
