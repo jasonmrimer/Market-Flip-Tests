@@ -1,5 +1,8 @@
 package com.marketflip.tests.crawler;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -9,4 +12,15 @@ import org.junit.runners.Suite.SuiteClasses;
 		JUT_MFC_NetCrawlerManager.class, JUT_MFC_SourceCodeAnalyzer.class, JUT_MFC_TempDB.class})
 public class JTS_AllCrawler {
 
+@Test
+public void Method_Condition_Expected() throws Exception {
+	// Test Variables
+
+	// Expected
+
+	// Actual
+
+	// Test
+
+}
 }

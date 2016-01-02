@@ -76,4 +76,5 @@ public class JUT_MF_Shopper {
 		
 		assertFalse(jSmith.equals(notJSmith));
 	}
+	
 }

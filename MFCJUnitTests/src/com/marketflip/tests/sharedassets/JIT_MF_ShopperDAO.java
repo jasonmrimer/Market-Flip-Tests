@@ -14,7 +14,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.protos.cloud.sql.Client.TupleProto;
+import com.marketflip.shared.products.MF_Product;
 import com.marketflip.shared.shopper.MF_PricePoint;
+import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
 public class JIT_MF_ShopperDAO {
@@ -28,7 +30,7 @@ public class JIT_MF_ShopperDAO {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		shopperDAO.finalize();
+		shopperDAO.close();
 	}
 
 	@Before
@@ -40,7 +42,7 @@ public class JIT_MF_ShopperDAO {
 	}
 
 	/**
-	 * The purose of this test is to ensure a rollback function, ClearAllTables, successful delets
+	 * The purpose of this test is to ensure a rollback function, ClearAllTables, successful delets
 	 * all tables from the database.
 	 *
 	 * @throws Exception
@@ -54,15 +56,17 @@ public class JIT_MF_ShopperDAO {
 		expectedSize = 0;
 		// Actual
 		shopperDAO.deleteAllTables();
-		shopperDAO.populateTableNameArrayList();
+//		shopperDAO.populateTableNameArrayList();
 		tableNames = shopperDAO.getTableNameArrayList();
 		actualSize = tableNames.size();
 		// Test
 		assertEquals(expectedSize, actualSize);
+		// Rollabck
+		shopperDAO.deleteAllTables();
 	}
 
 	/**
-	 * The purose of this test is to create the standard Shopper table then see if it exists byt
+	 * The purpose of this test is to create the standard Shopper table then see if it exists byt
 	 * clearing all tables, creating Shopper table, testing, and finally clearing all tables.
 	 *
 	 * @throws Exception
@@ -76,7 +80,7 @@ public class JIT_MF_ShopperDAO {
 		expectedTableNameArrayList.add("Shoppers");
 		// Actual
 		shopperDAO.deleteAllTables();
-		shopperDAO.createShopperTable();
+		shopperDAO.createShoppersTable();
 		shopperDAO.populateTableNameArrayList();
 		actualTableNameArrayList = shopperDAO.getTableNameArrayList();
 		// Test
@@ -86,7 +90,8 @@ public class JIT_MF_ShopperDAO {
 	}
 
 	/**
-	 * The purose of this test is specifically to test whether the Shopper's price point initiates a
+	 * The purpose of this test is specifically to test whether the Shopper's price point initiates
+	 * a
 	 * Price Point table creation - specific rows of the tables tested via separate tests.
 	 *
 	 * @throws Exception
@@ -105,7 +110,7 @@ public class JIT_MF_ShopperDAO {
 		expectedTableNameArrayList.add("PPT_" + emailAfterHash);
 		// Actual
 		shopperDAO.deleteAllTables();
-		shopperDAO.createShopperTable();
+		shopperDAO.createShoppersTable();
 		shopperDAO.addShopper(emailBeforeHash);
 		shopperDAO.populateTableNameArrayList();
 		actualTableNameArrayList = shopperDAO.getTableNameArrayList();
@@ -118,7 +123,7 @@ public class JIT_MF_ShopperDAO {
 	}
 
 	/**
-	 * The purose of this test is to send a single price point for a shopper and test whether it
+	 * The purpose of this test is to send a single price point for a shopper and test whether it
 	 * successfully inserted to the records.
 	 *
 	 * @throws Exception
@@ -140,10 +145,10 @@ public class JIT_MF_ShopperDAO {
 		expectedPricePoint.add(pricePoint);
 		// Actual
 		shopperDAO.deleteAllTables();
-		shopperDAO.createShopperTable();
+		shopperDAO.createShoppersTable();
 		shopperDAO.addShopper(emailBeforeHash);
 		shopperDAO.addPricePoint(emailBeforeHash, productUPC, price);
-		actualPricePoint = shopperDAO.getPricePointArrayList(emailBeforeHash);
+		actualPricePoint = shopperDAO.getArrayListOfPricePoints(emailBeforeHash);
 		// Test
 		assertEquals(expectedPricePoint, actualPricePoint);
 		// Rollback
@@ -151,7 +156,7 @@ public class JIT_MF_ShopperDAO {
 	}
 
 	/**
-	 * The purose of this test is to send 3 price points for a shopper and test whether all
+	 * The purpose of this test is to send 3 price points for a shopper and test whether all
 	 * successfully inserted to the records. It tests the arraylists of pricepoints
 	 *
 	 * @throws Exception
@@ -161,11 +166,11 @@ public class JIT_MF_ShopperDAO {
 			throws Exception {
 		// Test Variables
 		ArrayList<MF_PricePoint> expectedPricePoint, actualPricePoint;
-		String emailBeforeHash, product1UPC, product2UPC, product3UPC;
+		String shopperEmail, product1UPC, product2UPC, product3UPC;
 		Double price1, price2, price3;
 		MF_PricePoint pricePoint1, pricePoint2, pricePoint3;
 		// Expected
-		emailBeforeHash = "karlsilkroad@dnd.com";
+		shopperEmail = "karlsilkroad@dnd.com";
 		product1UPC = "045496901738"; // actual Super Mario Bros Wii UPC
 		product2UPC = "045496901739"; // fake
 		product3UPC = "045496901740"; // fake
@@ -181,12 +186,12 @@ public class JIT_MF_ShopperDAO {
 		expectedPricePoint.add(pricePoint3);
 		// Actual
 		shopperDAO.deleteAllTables();
-		shopperDAO.createShopperTable();
-		shopperDAO.addShopper(emailBeforeHash);
-		shopperDAO.addPricePoint(emailBeforeHash, product1UPC, price1);
-		shopperDAO.addPricePoint(emailBeforeHash, product2UPC, price2);
-		shopperDAO.addPricePoint(emailBeforeHash, product3UPC, price3);
-		actualPricePoint = shopperDAO.getPricePointArrayList(emailBeforeHash);
+		shopperDAO.createShoppersTable();
+		shopperDAO.addShopper(shopperEmail);
+		shopperDAO.addPricePoint(shopperEmail, product1UPC, price1);
+		shopperDAO.addPricePoint(shopperEmail, product2UPC, price2);
+		shopperDAO.addPricePoint(shopperEmail, product3UPC, price3);
+		actualPricePoint = shopperDAO.getArrayListOfPricePoints(shopperEmail);
 		// Test
 		Collections.sort(expectedPricePoint);
 		Collections.sort(actualPricePoint);
@@ -194,4 +199,62 @@ public class JIT_MF_ShopperDAO {
 		// Rollback
 		shopperDAO.deleteAllTables();
 	}
+
+	/**
+	 * The purpose of this test is to insert a new shopper into the database then ensure that
+	 * shopper is indeed in the databse by fetching the shopper from the database.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void AddShopper_AcceptableShopper_ReturnShopperFromDB() throws Exception {
+		// Test Variables
+		MF_Shopper expectedShopper, actualShopper;
+		String shopperUserName, shopperEmail;
+		// Expected
+		shopperUserName = "silkroad";
+		shopperEmail = "karlsilkroad@gmail.com";
+		expectedShopper = new MF_Shopper(shopperUserName, shopperEmail);
+		// Actual
+		shopperDAO.deleteAllTables();
+		shopperDAO.createShoppersTable();
+		shopperDAO.addShopper(expectedShopper);
+		actualShopper = shopperDAO.getShopper(expectedShopper);
+		// Test
+		assertTrue(expectedShopper.equals(actualShopper));
+		// Rollback
+		shopperDAO.deleteAllTables();
+	}
+
+	@Test
+	public void AddShopperPricePoint_ShopperWithPricePoint_ReturnPricePointFromDBUsingShopper()
+			throws Exception {
+		// Test Variables
+		MF_PricePoint expectedPricePoint, actualPricePoint;
+		ArrayList<MF_PricePoint> retrievedArrayListOfPricePoints;
+		MF_Shopper shopper;
+		String shopperUserName, shopperEmail;
+		// Expected
+		expectedPricePoint = new MF_PricePoint("045496901738", 10.00); // actual super mario bros wii UPC
+		// TODO determine how/whether to incorporate MF_Product & Price points most effectively
+		// Actual
+		shopperUserName = "silkroad";
+		shopperEmail = "karlsilkroad@gmail.com";
+		shopper = new MF_Shopper(shopperUserName, shopperEmail);
+		//		give the shopper a price point; when it adds the shopper to the DB it will add the price point, too
+		shopper.addPricePoint(expectedPricePoint);
+		shopperDAO.deleteAllTables();
+		shopperDAO.createShoppersTable();
+		//		adding shopper to DB also adds all attached price points
+		shopperDAO.addShopper(shopper);
+		retrievedArrayListOfPricePoints = shopperDAO.getArrayListOfPricePoints(shopper);
+	System.out.println(retrievedArrayListOfPricePoints.size());
+		actualPricePoint = (retrievedArrayListOfPricePoints.size() > 0)
+				? retrievedArrayListOfPricePoints.get(0) : null;
+		// Test
+		assertEquals(expectedPricePoint, actualPricePoint);
+		// Rollback
+		shopperDAO.deleteAllTables();
+	}
+
 }

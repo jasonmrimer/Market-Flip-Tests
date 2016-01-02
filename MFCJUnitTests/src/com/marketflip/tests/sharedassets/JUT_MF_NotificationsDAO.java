@@ -9,10 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.marketflip.application.shopper.MFA_ShopperManager;
+import com.marketflip.shared.shopper.MF_NotificationsDAO;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
-
-public class JUT_MF_ShopperDAO {
+public class JUT_MF_NotificationsDAO {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -31,7 +31,7 @@ public class JUT_MF_ShopperDAO {
 	}
 
 	/**
-	 * The purpose of this test is to start the creation of a MF_ShopperDAO with a first failing
+	 * The purpose of this test is to start the creation of a MF_NotificationsDAO with a first failing
 	 * test. It is a simple constructor test.
 	 *
 	 * @throws Exception
@@ -40,12 +40,12 @@ public class JUT_MF_ShopperDAO {
 	public void Construct_NoArgs_ProperToString() throws Exception {
 		// Test Variables
 		String expectedToString, actualToString;
-		MF_ShopperDAO shopperDAO;
+		MF_NotificationsDAO notificationsDAO;
 		// Expected
-		expectedToString = "Instance of Market Flip Application Shopping Database Access Object without parameters.";
+		expectedToString = "Instance of Market Flip Notifications Database Access Object without parameters.";
 		// Actual
-		shopperDAO = new MF_ShopperDAO();
-		actualToString = shopperDAO.toString();
+		notificationsDAO = new MF_NotificationsDAO();
+		actualToString = notificationsDAO.toString();
 		// Test
 		assertEquals(expectedToString, actualToString);
 	}

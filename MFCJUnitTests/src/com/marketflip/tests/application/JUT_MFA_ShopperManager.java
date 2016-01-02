@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import com.marketflip.application.shopper.MFA_ShopperManager;
 import com.marketflip.shared.shopper.MF_PricePoint;
+import com.marketflip.shared.shopper.MF_Shopper;
 
 public class JUT_MFA_ShopperManager {
 
@@ -34,7 +35,7 @@ public class JUT_MFA_ShopperManager {
 	}
 
 	/**
-	 * The purpose of this test is to start the creation of a MFA_ShopperManager with a first
+	 * The purpose of this test is to start the creation of a MFA_NotificationManager with a first
 	 * failing
 	 * test. It is a simple constructor test.
 	 *
@@ -95,7 +96,7 @@ public class JUT_MFA_ShopperManager {
 		bq = new ArrayBlockingQueue<>(3);
 		shopperManager = new MFA_ShopperManager(bq, expectedFutureCount, true);
 		Thread smThread = new Thread(shopperManager);
-		smThread.run();
+		smThread.start();
 		while (smThread.isAlive()) {
 		}
 		actualFutureCount = shopperManager.getCompletedFutureCount();
@@ -137,20 +138,20 @@ public class JUT_MFA_ShopperManager {
 	@Test
 	public void Construct_MockTrueAndFutureLimit1_1ShopperInArray() throws Exception { // TODO change to shopper class 
 		// Test Variables
-		ArrayList<String> expectedArrayList = new ArrayList<String>(),
-				actualArrayList = new ArrayList<String>();
+		ArrayList<MF_Shopper> expectedArrayList = new ArrayList<MF_Shopper>(),
+				actualArrayList = new ArrayList<MF_Shopper>();
 		MFA_ShopperManager shopperManager;
 		BlockingQueue bq;
 		int futureLimit;
 		// Expected
-		expectedArrayList.add("shopper0");
+		expectedArrayList.add(new MF_Shopper("shopper0", "shopper0@gmail.com"));
 		// Actual
 		futureLimit = 1;
 		bq = new ArrayBlockingQueue<>(3);
 		shopperManager = new MFA_ShopperManager(bq, futureLimit, true);
 		actualArrayList = shopperManager.getArrayListOfShoppers();
 		// Test
-		assertEquals(expectedArrayList, actualArrayList);
+		assertTrue(expectedArrayList.get(0).equals(actualArrayList.get(0)));
 	}
 
 	/**

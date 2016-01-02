@@ -32,7 +32,7 @@ public class JUT_MF_PricePoint {
 	}
 
 	/**
-	 * The purose of this test is to make sure the equals method of the MF_PRicePoint class properly
+	 * The purpose of this test is to make sure the equals method of the MF_PRicePoint class properly
 	 * classifies two identical objects as equal.
 	 *
 	 * @throws Exception
@@ -50,7 +50,7 @@ public class JUT_MF_PricePoint {
 	}
 
 	/**
-	 * The purose of this test is to ensure the equal method works on an ArrayList as that
+	 * The purpose of this test is to ensure the equal method works on an ArrayList as that
 	 * collection is used often throughout the rest of Market Flip.
 	 *
 	 * @throws Exception
@@ -73,7 +73,7 @@ public class JUT_MF_PricePoint {
 	}
 
 	/**
-	 * The purose of this test is to ensure the comparator properly works by using the
+	 * The purpose of this test is to ensure the comparator properly works by using the
 	 * Collection.sort (that harness the compareTo) to match two unsorted arraylists into one - used
 	 * throughout Market Flip to test ArrayLists that may be unsorted.
 	 *
