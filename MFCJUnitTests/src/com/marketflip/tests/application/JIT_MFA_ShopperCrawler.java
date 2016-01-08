@@ -20,24 +20,22 @@ import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
+/**
+ * The purpose of this test case is to run integration testing for the Shopper Crawler by connecting
+ * to external sources and ensure proper coordination with those sources.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFA_ShopperCrawler {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to construct a Shopper Crawler object then feeding it a shopper
+	 * that already has price points in the database and then test whether it retrieves those price
+	 * points indicating it successfully constructed and connected.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Construct_ShopperWithPricePointsInDB_HashMapOfPricePoints() throws Exception {
 		// Test Variables

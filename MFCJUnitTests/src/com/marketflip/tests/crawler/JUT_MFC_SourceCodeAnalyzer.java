@@ -19,29 +19,21 @@ import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
 import com.marketflip.crawler.scanalyzer.MFC_SourceCodeAnalyzer;
 import com.marketflip.shared.products.MF_Product;
 
+/**
+ * The purpose of this test case is to run unit tests on the Source Code Analyzer by testing its
+ * creation and storage methods as well as its extraction methods without connecting to any external
+ * source - it uses "local" files included with the project.
+ *
+ * @author highball
+ *
+ */
 public class JUT_MFC_SourceCodeAnalyzer {
 
 	final ClassLoader	loader				= this.getClass().getClassLoader();
 	final String		htmlResourceFolder	= "html/";
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	/**
-	 * The purose of this test is to construct an instance of SourceCodeAnalyzer with a specified
+	 * The purpose of this test is to construct an instance of SourceCodeAnalyzer with a specified
 	 * HTML Document then test the proper creation of that constructor comparing the ToString
 	 * from the instance.
 	 *
@@ -65,7 +57,7 @@ public class JUT_MFC_SourceCodeAnalyzer {
 	}
 
 	/**
-	 * The purose of this test is to send an HTML doc without any product information to the
+	 * The purpose of this test is to send an HTML doc without any product information to the
 	 * analyzer and ensure it returns a null product when it runs its call() method.
 	 *
 	 * @throws Exception
@@ -86,7 +78,7 @@ public class JUT_MFC_SourceCodeAnalyzer {
 	}
 
 	/**
-	 * The purose of this test is to send a local HTML Doc from a Walmart product site to the
+	 * The purpose of this test is to send a local HTML Doc from a Walmart product site to the
 	 * SourceCodeAnalyzer then expect it to return a product that accurately describes the product
 	 * inside the HTLML Doc.
 	 *
@@ -113,7 +105,12 @@ public class JUT_MFC_SourceCodeAnalyzer {
 		assertTrue(expectedProduct.equals(actualProduct));
 	}
 
-	// Test by product name
+	/**
+	 * The purpose of this test is to run the call method on a local file and expect to return the
+	 * correct name by testing the extracted value against the known value.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void CallAndReturnProduct_TestWalmartSuperMarioWii_SuperMarioName() throws Exception {
 		// Test Variables
@@ -132,7 +129,12 @@ public class JUT_MFC_SourceCodeAnalyzer {
 		assertEquals(expectedName, actualName);
 	}
 
-	// Test by product UPC
+	/**
+	 * The purpose of this test is to run the call method on a local file and expect to return the
+	 * correct UPC by testing the extracted value against the known value.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void CallAndReturnProduct_TestWalmartSuperMarioWii_SuperMarioUPC() throws Exception {
 		// Test Variables
@@ -140,7 +142,6 @@ public class JUT_MFC_SourceCodeAnalyzer {
 		MF_Product product;
 		MFC_SourceCodeAnalyzer sca;
 		String localFileName = "TestWalmartSuperMarioBrosWii.html";
-		//		String name, description, UPC, UNSPSC, linkToProduct, prices, height, width, length, weight;
 		// Expected
 		expectedUPC = "045496901738";
 		// Actual
@@ -151,7 +152,13 @@ public class JUT_MFC_SourceCodeAnalyzer {
 		assertEquals(expectedUPC, actualUPC);
 	}
 
-	// Test by product UPC
+	/**
+	 * The purpose of this test is to run the call method on the Source Code Analyzer, assume it
+	 * will extract the proper description, and test whether that extracted despcription equals the
+	 * known description.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void CallAndReturnProduct_TestWalmartSuperMarioWii_SuperMarioDescription()
 			throws Exception {
@@ -171,8 +178,12 @@ public class JUT_MFC_SourceCodeAnalyzer {
 		assertEquals(expectedDescription, actualDescription);
 	}
 
-	/*
-	 * Simplify the code above with frequent HTML Doc creations via this method
+	/**
+	 * The purpose of this method is to return a document by name from the project's resource
+	 * package.
+	 *
+	 * @param fileName
+	 * @return JSoup Document
 	 */
 	private Document getDocFromLocalFileName(String fileName) {
 		String localFilePath = loader.getResource(htmlResourceFolder + fileName).getPath();

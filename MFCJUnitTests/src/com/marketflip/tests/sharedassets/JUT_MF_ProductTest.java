@@ -21,22 +21,6 @@ import com.marketflip.shared.products.MF_Product;
 
 public class JUT_MF_ProductTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
 	public void GetCurrentLowestPrice_Sending99CentsAmazon_Expecting99CentsAmazon () {
 		

@@ -16,25 +16,22 @@ import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
 import com.marketflip.shared.products.MF_Price;
 import com.marketflip.shared.products.MF_Product;
 
-
+/**
+ * The purpose of this test case is to run integration testing for the Database Crawler Manager,
+ * allowing it to connect to external resources such as the actual Product Database and make
+ * meaningful assertions against it.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFC_DatabaseCrawlerManager {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to ensure the database crawler manager can run a complete cycle,
+	 * end the thread, and return the expected number of products added to the database.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Run_1Product_ProductCountEquals1() throws Exception {
 		// Test Variables
@@ -53,7 +50,7 @@ public class JIT_MFC_DatabaseCrawlerManager {
 		dbm = new MFC_DatabaseCrawlerManager(bqMFProduct, "testing", productLimit);
 		dbmThread = new Thread(dbm);
 		dbmThread.start();
-		while(dbmThread.isAlive()){
+		while (dbmThread.isAlive()) {
 			//wait
 		}
 		actualProductInsertionCount = dbm.getProductsInsertedToDBCount();

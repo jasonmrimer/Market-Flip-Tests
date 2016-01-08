@@ -30,19 +30,8 @@ public class JUT_MFC_DataPlatformTests {
 	private ExecutorService executor = Executors.newFixedThreadPool(1);
 	Future<Boolean> future;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		
-		
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
-		
 		platform = new MFC_DataPlatform("testing");
 	}
 

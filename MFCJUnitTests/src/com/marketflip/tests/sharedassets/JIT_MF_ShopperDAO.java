@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Properties;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.After;
@@ -19,6 +20,14 @@ import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
+/**
+ * The purpose of this test case is to run integration testing for the Shopper Data Access Object by
+ * running several methods such as insertions, deletions, and connections to determine whether the
+ * class proper connects and manipulates the database.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MF_ShopperDAO {
 
 	static MF_ShopperDAO shopperDAO;
@@ -31,14 +40,6 @@ public class JIT_MF_ShopperDAO {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		shopperDAO.close();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class JIT_MF_ShopperDAO {
 		expectedSize = 0;
 		// Actual
 		shopperDAO.deleteAllTables();
-//		shopperDAO.populateTableNameArrayList();
+		//		shopperDAO.populateTableNameArrayList();
 		tableNames = shopperDAO.getTableNameArrayList();
 		actualSize = tableNames.size();
 		// Test
@@ -226,6 +227,13 @@ public class JIT_MF_ShopperDAO {
 		shopperDAO.deleteAllTables();
 	}
 
+	/**
+	 * The purpose of this test is to ensure addShopperPricePoint, a method that adds a single price
+	 * point to the shopper's price points table, works without flaws by returning the retrieved
+	 * price points from the database and comparing the values.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void AddShopperPricePoint_ShopperWithPricePoint_ReturnPricePointFromDBUsingShopper()
 			throws Exception {
@@ -248,7 +256,6 @@ public class JIT_MF_ShopperDAO {
 		//		adding shopper to DB also adds all attached price points
 		shopperDAO.addShopper(shopper);
 		retrievedArrayListOfPricePoints = shopperDAO.getArrayListOfPricePoints(shopper);
-	System.out.println(retrievedArrayListOfPricePoints.size());
 		actualPricePoint = (retrievedArrayListOfPricePoints.size() > 0)
 				? retrievedArrayListOfPricePoints.get(0) : null;
 		// Test

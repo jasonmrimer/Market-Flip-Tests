@@ -13,26 +13,18 @@ import org.junit.Test;
 
 import com.marketflip.shared.shopper.MF_PricePoint;
 
+/**
+ * The purpose of this test case is to run unit tests on the PricePoint object mostly by testing
+ * creation and storage methods for the class.
+ *
+ * @author highball
+ *
+ */
 public class JUT_MF_PricePoint {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	/**
-	 * The purpose of this test is to make sure the equals method of the MF_PRicePoint class properly
+	 * The purpose of this test is to make sure the equals method of the MF_PRicePoint class
+	 * properly
 	 * classifies two identical objects as equal.
 	 *
 	 * @throws Exception

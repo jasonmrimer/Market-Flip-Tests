@@ -20,24 +20,22 @@ import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
 import com.marketflip.crawler.scanalyzer.MFC_SourceCodeAnalyzerManager;
 import com.marketflip.shared.products.MF_Product;
 
+/**
+ * The purpose of this test case is to run integration tests for the Main class of the Market Flip
+ * Crawler; essentially, it runs the entire application and tests whether it ran successfully.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFC_Main {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to run the main method of Market Flip Crawler application. It
+	 * should take the two arguments and run to completion as expected by the arguments (i.e., to
+	 * the shopper/website limit defined by the parameters).
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Main_TwoArgs_RunToCompletion() throws Exception {
 		// Expected

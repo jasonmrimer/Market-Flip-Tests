@@ -1,10 +1,3 @@
-/**
- * The purpose of this integration test is to serve as the test class for MFC_NetCrawler when it
- * connects to external resources (notably different than HTML docs included in the project as in
- * the unit tests). When the object connects to the Internet or a database, this class will test
- * those interactions. Note that these integrations tests inheritantly take more time than the unit
- * tests and are designed to run separately in order to choose long/short testing times.
- */
 package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
@@ -27,6 +20,16 @@ import org.junit.Test;
 import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
 import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
 
+/**
+ * The purpose of this integration test is to serve as the test class for MFC_NetCrawler when it
+ * connects to external resources (notably different than HTML docs included in the project as in
+ * the unit tests). When the object connects to the Internet or a database, this class will test
+ * those interactions. Note that these integrations tests inheritantly take more time than the unit
+ * tests and are designed to run separately in order to choose long/short testing times.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFC_NetCralwer {
 
 	private static MFC_WebsiteDAO	database;
@@ -38,17 +41,9 @@ public class JIT_MFC_NetCralwer {
 		database = new MFC_WebsiteDAO(); // create database for test use
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		WebsiteDAO_DefaultConstructor_IsRunning(); // test connection
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -129,6 +124,12 @@ public class JIT_MFC_NetCralwer {
 		assertEquals(expectedResultSetToString, actualResultSetToString);
 	}
 
+	/**
+	 * The purpose of this test is to run the thread and visit an actual website that is known to
+	 * have a JSoup Document for the website then test that document by title.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Call_ActualJSoupWebsite_SiteDocument() throws Exception {
 		// Test Variables
@@ -144,6 +145,5 @@ public class JIT_MFC_NetCralwer {
 		// Test
 		assertEquals(expectedTitle, actualTitle);
 	}
-	
-	
+
 }

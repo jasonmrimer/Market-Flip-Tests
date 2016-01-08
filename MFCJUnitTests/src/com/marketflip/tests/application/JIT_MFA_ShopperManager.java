@@ -17,30 +17,26 @@ import com.marketflip.application.shopper.MFA_ShopperManager;
 import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
+/**
+ * The puurpose of this test case is to run integration tests for the Shopper Crawler Manager using
+ * real connections to external sources such as the shopper database and ensuring proper
+ * relationships with those sources.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFA_ShopperManager {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to construct a shopperManager then ensure it opened a connection.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Construct_MockWithDatabase_ValidConnectionToDB() throws Exception {
 		// Test Variables
 		MFA_ShopperManager shopperManager;
-		// Expected
-
+		// Expected: connection is NOT closed
 		// Actual
 		shopperManager = new MFA_ShopperManager(null, 0, false);
 		// Test
@@ -49,6 +45,13 @@ public class JIT_MFA_ShopperManager {
 		shopperManager.close();
 	}
 
+	/**
+	 * The purpose of this test is to run a thread as the Shopper Manager to completion by limit 1
+	 * (only insert one shopper into the shopper database and that is all the database will
+	 * retrieve).
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Run_1ShopperInDB_ReturnShopper() throws Exception {
 		// Test Variables
@@ -75,13 +78,12 @@ public class JIT_MFA_ShopperManager {
 		smThread = new Thread(shopperManager);
 		smThread.start();
 		while (smThread.isAlive()) {
+			// wait
 		}
 		actualShopperCount = shopperManager.getCompletedBlockingQueueAdditions();
 		// Test
 		assertEquals(expectedShopperCount, actualShopperCount);
 		// Rollback
 		shopperDAO.deleteAllTables();
-
 	}
-
 }
