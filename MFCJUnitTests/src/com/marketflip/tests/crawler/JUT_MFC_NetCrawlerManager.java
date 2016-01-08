@@ -33,22 +33,6 @@ public class JUT_MFC_NetCrawlerManager {
 	final ClassLoader						loader				= this.getClass().getClassLoader();
 	final String							htmlResourceFolder	= "html/";
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	/**
 	 * The purose of this test is to construct an instance of NetCrawlerManager with a specified
 	 * blockingQueue size then test the proper creation of that constructor comparing the ToString

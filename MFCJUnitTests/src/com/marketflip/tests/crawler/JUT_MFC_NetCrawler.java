@@ -23,27 +23,18 @@ import org.junit.Test;
 import com.marketflip.crawler.netcrawler.MFC_NetCrawler;
 import com.marketflip.crawler.netcrawler.MFC_WebsiteDAO;
 
+/**
+ * The purpose of this test case is to run unit tests on the Net Crawler by testing its creations,
+ * storage, and assertion methods without connecting to any external source.
+ *
+ * @author highball
+ *
+ */
 public class JUT_MFC_NetCrawler {
 
 	final ClassLoader	loader				= this.getClass().getClassLoader();
 	final String		htmlResourceFolder	= "html/";
-	final String		bucketName			= "http://www.lovenirds.com/"; // Google Developer Console bucket that acts as a static website
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	final String		bucketName			= "http://www.lovenirds.com/";		// Google Developer Console bucket that acts as a static website
 
 	/**
 	 * The purpose of this test is to test the succesful creation of a NetCrawler instance without a
@@ -133,17 +124,11 @@ public class JUT_MFC_NetCrawler {
 		link1FilePath = bucketName + link1FileName;
 		link2FilePath = bucketName + link2FileName;
 		link3FilePath = bucketName + link3FileName;
-//		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
-//		link1FilePath = loader.getResource(htmlResourceFolder + link1FileName).getPath();
-//		link2FilePath = loader.getResource(htmlResourceFolder + link2FileName).getPath();
-//		link3FilePath = loader.getResource(htmlResourceFolder + link3FileName).getPath();
 		testFileBaseURI = testFilePath.replace(testFileName, "");
 		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath));
 		// Actual
-//		netCrawler = new MFC_NetCrawler(testFilePath, testFileBaseURI);
 		netCrawler = new MFC_NetCrawler(testFilePath);
 		url = new URL(testFilePath);
-//		netCrawler = new MFC_NetCrawler(url);
 		netCrawler.call();
 		actualURLs = netCrawler.getURLs();
 		// Test
@@ -159,10 +144,13 @@ public class JUT_MFC_NetCrawler {
 	public void Call_NonHTTPSite_NullJSoupDoc() throws Exception {
 		// Testing variables
 		Document expectedJSoupDoc, actualJSoupDoc;
+		// Expected 
 		expectedJSoupDoc = null;
+		// Actual
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler("fakewebsite.com");
 		netCrawler.call();
 		actualJSoupDoc = netCrawler.getSiteDoc();
+		// Test
 		assertEquals(expectedJSoupDoc, actualJSoupDoc);
 	}
 

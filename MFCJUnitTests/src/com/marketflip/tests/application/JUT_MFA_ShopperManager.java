@@ -16,23 +16,15 @@ import com.marketflip.application.shopper.MFA_ShopperManager;
 import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.shopper.MF_Shopper;
 
+/**
+ * The purpose of this test case is to run unit tests on the Shopper Manager by its creation and
+ * storage methods as well as its future creations and array usage without connecting to any
+ * external sources.
+ * 
+ * @author highball
+ *
+ */
 public class JUT_MFA_ShopperManager {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * The purpose of this test is to start the creation of a MFA_NotificationManager with a first
@@ -178,6 +170,7 @@ public class JUT_MFA_ShopperManager {
 		smThread = new Thread(shopperManager);
 		smThread.start();
 		while (smThread.isAlive()) {
+			// wait
 		}
 		actualBQCount = shopperManager.getCompletedBlockingQueueAdditions();
 		// Test

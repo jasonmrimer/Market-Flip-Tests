@@ -12,24 +12,23 @@ import com.marketflip.shared.data.MF_ProductsDAO;
 import com.marketflip.shared.products.MF_Price;
 import com.marketflip.shared.products.MF_Product;
 
+/**
+ * The purpose of this test case is to test methods for the Production Data Access Object while
+ * actually connected to the database. It is an integration test that will assure all insertions,
+ * deletions, and connections un as desired without error.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MF_ProductDAO {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to ensure the insertProduct method works when sending it a
+	 * product with a single price in its array list. It should receive the entire array list and
+	 * that should contain the exact price.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void InsertProduct_ProductWith1Price_RetrievedPrice() throws Exception {
 		// Test Variables
@@ -47,7 +46,7 @@ public class JIT_MF_ProductDAO {
 		expectedPrice = 30.00;
 		// Actual
 		retrievedProduct = productDAO.getProduct("045496901738");
-		if (retrievedProduct.getPrices().size() > 0){
+		if (retrievedProduct.getPrices().size() > 0) {
 			actualPrice = retrievedProduct.getPrices().get(0).getPrice();
 		}
 		else {

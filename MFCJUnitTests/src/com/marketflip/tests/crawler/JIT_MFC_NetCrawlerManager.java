@@ -14,24 +14,24 @@ import org.junit.Test;
 
 import com.marketflip.crawler.netcrawler.MFC_NetCrawlerManager;
 
+/**
+ * The purpose of this test case is to run integration testing for the Net Crawler Manager by
+ * allowing real connections to the Internet as well as the products database, verifying assertions
+ * and connections work successfully.
+ *
+ * @author highball
+ *
+ */
 public class JIT_MFC_NetCrawlerManager {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * The purpose of this test is to run the call method of the Net Crawler using the Google
+	 * Developer's Console bucket to act as a published website that we control and actual place an
+	 * HTML Doc on the web, access it, then add its contents to the blocking queue - it will test
+	 * the queue's counter for completed tasks.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void Call_BucketWalmartMarioHTML_AddDocToBlockingQueue() throws Exception {
 		// Test Variables

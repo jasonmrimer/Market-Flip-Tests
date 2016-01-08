@@ -11,24 +11,14 @@ import org.junit.Test;
 import com.marketflip.application.shopper.MFA_ShopperManager;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
-
+/**
+ * The purpose of this test case is to unit test the Shopper Data Access Object using its creation
+ * and storage methods.
+ *
+ * @author highball
+ *
+ */
 public class JUT_MF_ShopperDAO {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * The purpose of this test is to start the creation of a MF_ShopperDAO with a first failing

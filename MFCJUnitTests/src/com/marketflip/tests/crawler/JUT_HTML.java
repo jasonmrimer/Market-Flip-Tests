@@ -31,23 +31,7 @@ public class JUT_HTML {
 
 	final ClassLoader	loader				= this.getClass().getClassLoader();
 	final String		htmlResourceFolder	= "html/";
-	final String		bucketName			= "http://www.lovenirds.com/"; // Google Developer Console bucket that acts as a static website
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	final String		bucketName			= "http://www.lovenirds.com/";		// Google Developer Console bucket that acts as a static website
 
 	/**
 	 * I want a test that ensures the relative paths work.
@@ -156,6 +140,12 @@ public class JUT_HTML {
 		assertEquals(expectedTitle, actualTitle);
 	}
 
+	/**
+	 * The purpose of this test is to run methods that attempt to find and extract the UPC from a
+	 * site document using a known UPC then test whether it found that exact UPC.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void ExtractUPC_TestWalmartSuperMarioBrosWii_MatchingUPC() throws Exception {
 		// Test Variables
@@ -174,6 +164,11 @@ public class JUT_HTML {
 		assertEquals(expectedUPC, actualUPC);
 	}
 
+	/**
+	 * The purpose of this test is to ensure the validator works when sending a real UPC.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void ValidateUPC_SuperMarioBrosWii_ValidUPC() throws Exception {
 		// Test Variables
@@ -185,6 +180,28 @@ public class JUT_HTML {
 		assertTrue(validator.isValid(expectedUPC));
 	}
 
+	/**
+	 * The purpose of this test is to ensure the validator works when sending a fake/incorrect UPC.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void ValidateUPC_FakeNumber_ValidUPC() throws Exception {
+		// Test Variables
+		String expectedUPC, actualUPC;
+		// Expected
+		expectedUPC = "04549690173822";
+		// Test
+		EAN13CheckDigit validator = new EAN13CheckDigit();
+		assertFalse(validator.isValid(expectedUPC));
+	}
+
+	/**
+	 * The purpose of this test is to run a method that retrieves a file from the GDC bucket (our
+	 * own "website") and test whether it successfully retrieved the file by checking its title.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void RetrieveFileFromBucket_FileName_FileByTitle() throws Exception {
 		// Test Variables
@@ -202,7 +219,7 @@ public class JUT_HTML {
 		// Test
 		assertEquals(expectedTitle, actualTitle);
 	}
-	
+
 	/**
 	 * The purpose of this test is to extract all links from a fake HTML document and test
 	 * the array against the known array of links.

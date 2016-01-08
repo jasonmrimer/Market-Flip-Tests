@@ -19,30 +19,14 @@ import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
 
+/**
+ * Proton - the first prototype.
+ * Successful run: 20160101.
+ * @author highball
+ *
+ */
 public class Proton {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-//	@Test
-//	public void test() throws Exception{
-//		String[] args = new String[0];
-//		MFC_Main.main(args);
-//		System.out.println("ran it");
-//	}
 	/**
 	 * The purpose of this Proton is to test the first iteration of the total system by using one
 	 * customer, Karl Silkroad, requesting one product, Super Mario Bros. Wii, from one company,
