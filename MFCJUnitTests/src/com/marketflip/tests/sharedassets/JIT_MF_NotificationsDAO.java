@@ -81,7 +81,7 @@ public class JIT_MF_NotificationsDAO {
 		expectedTableNameArrayList.add("Notifications");
 		// Actual
 		notificationsDAO.deleteAllTables();
-		notificationsDAO.createNotificationsTable();
+		//notificationsDAO.createNotificationsTable();
 		actualTableNameArrayList = notificationsDAO.getTableNameArrayList();
 		// Test
 		assertEquals(expectedTableNameArrayList, actualTableNameArrayList);
