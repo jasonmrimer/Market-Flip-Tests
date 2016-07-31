@@ -21,7 +21,7 @@ import com.marketflip.shared.shopper.MF_ShopperDAO;
  * The puurpose of this test case is to run integration tests for the Shopper Crawler Manager using
  * real connections to external sources such as the shopper database and ensuring proper
  * relationships with those sources.
- *
+ *as
  * @author highball
  *
  */
