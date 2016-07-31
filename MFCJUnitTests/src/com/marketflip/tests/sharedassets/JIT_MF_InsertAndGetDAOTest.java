@@ -39,8 +39,8 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
-		assertTrue(DAO.getEnvironment().equals("testing"));
+		DAO = new MF_ProductsDAO ("production");
+		assertTrue(DAO.getEnvironment().equals("production"));
 	}
 	@Test
 	public void ChildType_Implicit_ExpectProducts () throws SQLException {
@@ -49,7 +49,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		assertTrue(DAO.getChildType().equals("Products"));
 	}
 	
@@ -60,7 +60,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		MF_Product product = null;
 		assertFalse(DAO.addProductToCommit(product));
 	}
@@ -72,7 +72,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "889661008491";
 		
@@ -91,7 +91,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "889661008491";
 		
@@ -113,7 +113,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		String UPC = "xcvxcv";
 
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price>();
@@ -131,7 +131,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		String UPC = "xcvxcv";
 
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price>();
@@ -151,7 +151,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		String UPC = "889661008491";
 		
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price>();
@@ -180,7 +180,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0044600301853";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
@@ -205,7 +205,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		ArrayList<MF_Product> testingList = new ArrayList<MF_Product> ();
 		String UPC1 = "0041215021107";
@@ -261,7 +261,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC1 = "0018964059224";
 		ArrayList<MF_Price> priceList1 = new ArrayList<MF_Price> ();
@@ -288,7 +288,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0003084262814";
 		MF_Product testProduct = DAO.getProduct(UPC);
@@ -303,7 +303,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "sdfsdfsdfsdfsd";
 		MF_Product testProduct = DAO.getProduct(UPC);
@@ -318,7 +318,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		MF_Product product = new MF_Product("dgdgd", new ArrayList<MF_Price>());
 		MF_Product testProduct = DAO.getProduct(product);
 		
@@ -332,7 +332,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0676108080581";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
@@ -356,7 +356,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0097368886025";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
@@ -381,7 +381,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0811406171399";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
@@ -404,7 +404,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		String UPC = "5643211";
 		assertFalse(DAO.delete(UPC));
 	}
@@ -416,7 +416,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		MF_Product product = new MF_Product("33333", new ArrayList<MF_Price>());
 		assertFalse(DAO.delete(product));
 	}
@@ -428,7 +428,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0083791070100";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();
@@ -445,7 +445,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0083791070100";
 		
@@ -461,7 +461,7 @@ public class JIT_MF_InsertAndGetDAOTest {
 				DAO.close();
 			}
 		}
-		DAO = new MF_ProductsDAO ("testing");
+		DAO = new MF_ProductsDAO ("production");
 		
 		String UPC = "0813263011900";
 		ArrayList<MF_Price> priceList = new ArrayList<MF_Price> ();

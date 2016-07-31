@@ -97,7 +97,9 @@ public class JUT_HTML {
 		assertEquals(expectedLinkArray, actualLinkArray);
 	}
 
-	@Test
+	/*@Test
+	 * Deprecated- the file path in this case will be irrelevant (it's local to the user's machine)
+	 */
 	public void RetrieveFilePath_LocalHTMLFileInResources_HTMLFilePath() throws Exception {
 		// Test Variables
 		String expectedPath, actualPath;
@@ -107,6 +109,7 @@ public class JUT_HTML {
 		expectedPath = "/Users/Atlas/GCloud/marketflip-tests/MFCJUnitTests/bin/html/LocationTest.html";
 		// Actual
 		actualPath = loader.getResource("html/LocationTest.html").getPath();
+		System.out.println(actualPath);
 		// Test
 		assertEquals(expectedPath, actualPath);
 	}
