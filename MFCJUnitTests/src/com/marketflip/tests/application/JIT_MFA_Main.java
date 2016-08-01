@@ -30,6 +30,7 @@ import com.marketflip.shared.shopper.MF_ShopperDAO;
  * @author highball
  *
  */
+//fixing wokrtree
 public class JIT_MFA_Main {
 
 	private ExecutorService							executor;
