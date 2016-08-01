@@ -3,6 +3,7 @@ package com.marketflip.tests.crawler;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
@@ -77,6 +78,39 @@ public class JUT_MFC_NetCrawlerManager {
 		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
 		netCrawlerManager.run();
 		actualFuturesCount = netCrawlerManager.getSitesVisited();
+		// Test
+		assertEquals(expectedFuturesCount, actualFuturesCount);
+	}
+	
+	/**
+	 * Protozoa Sprint 01
+	 * The purpose of this test is to ensure the crawler visits 1 site then follows it to 4 more sites.
+	 * 
+	 */
+	@Test
+	public void Run_HTMLDocWith4Links_Visit5Sites() throws Exception {
+		// Test Variables
+		// create expected array as a Collection
+		Collection<String> expectedLinkArray = new ArrayList<String>();
+		expectedLinkArray.add("http://www.base.com");
+		expectedLinkArray.add("http://www.link1.com");
+		expectedLinkArray.add("http://www.link2.com");
+		expectedLinkArray.add("http://www.link3.com");
+		expectedLinkArray.add("http://www.link3-1.com");
+		String testFileName, testFilePath;
+		MFC_NetCrawlerManager netCrawlerManager;
+		// Expected
+		testFileName = "HTMLTest_RelativeReferences.html"; // name of file
+		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+		// Actual
+		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
+		//TODO set NCM to be constructed with a limit of 5 then shutdown
+		netCrawlerManager.run();
+		// create actual array
+		MFC_NetCrawler netCrawler = new MFC_NetCrawler(testFilePath);
+		netCrawler.call();
+		Collection<String> actualLinkArray = netCrawler.getURLs();
+		assertEquals(expectedLinkArray, actualLinkArray);
 		// Test
 		assertEquals(expectedFuturesCount, actualFuturesCount);
 	}
