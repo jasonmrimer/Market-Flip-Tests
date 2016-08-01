@@ -2,35 +2,42 @@
 <classpath>
 	<classpathentry kind="src" output="target/classes" path="src">
 		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="optional" value="true" />
+			<attribute name="maven.pomderived" value="true" />
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="lib">
+	<classpathentry excluding="**" kind="src" output="target/classes"
+		path="lib">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.pomderived" value="true" />
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="res">
+	<classpathentry excluding="**" kind="src" output="target/classes"
+		path="res">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.pomderived" value="true" />
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry exported="true" kind="con"
+		path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4" />
+	<classpathentry kind="con"
+		path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.pomderived" value="true" />
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+	<classpathentry exported="true" kind="con"
+		path="com.google.appengine.eclipse.core.GAE_CONTAINER" />
+	<classpathentry kind="con"
+		path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.pomderived" value="true" />
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/marketflip-application.jar"/>
-	<classpathentry kind="lib" path="lib/marketflip-sharedassets.jar"/>
-	<classpathentry kind="lib" path="lib/marketflip-crawler.jar"/>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="lib" path="lib/marketflip-application.jar" />
+	<classpathentry kind="lib" path="lib/marketflip-sharedassets.jar" />
+	<classpathentry kind="lib" path="lib/marketflip-crawler.jar" />
+	<classpathentry kind="lib"
+		path="lib/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar" />
+	<classpathentry kind="output" path="target/classes" />
 </classpath>
