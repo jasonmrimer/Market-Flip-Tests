@@ -1,5 +1,5 @@
 package com.marketflip.tests.application;
-// 
+
 import static org.junit.Assert.*;
 
 import java.util.concurrent.ArrayBlockingQueue;
