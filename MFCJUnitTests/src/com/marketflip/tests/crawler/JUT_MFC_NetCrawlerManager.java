@@ -110,9 +110,8 @@ public class JUT_MFC_NetCrawlerManager {
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(testFilePath);
 		netCrawler.call();
 		Collection<String> actualLinkArray = netCrawler.getURLs();
-		assertEquals(expectedLinkArray, actualLinkArray);
 		// Test
-		assertEquals(expectedFuturesCount, actualFuturesCount);
+		assertEquals(expectedLinkArray, actualLinkArray);
 	}
 
 }
