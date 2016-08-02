@@ -2,7 +2,9 @@ package com.marketflip.tests.crawler;
 
 import static org.junit.Assert.*;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -33,6 +35,7 @@ public class JUT_MFC_NetCrawlerManager {
 			MFC_SourceCodeAnalyzerManager.MFC_MAX_ANALYZER_QUEUE_COUNT);
 	final ClassLoader						loader				= this.getClass().getClassLoader();
 	final String							htmlResourceFolder	= "html/";
+	final String		bucketName			= "http://www.lovenirds.com/";		// Google Developer Console bucket that acts as a static website
 
 	/**
 	 * The purose of this test is to construct an instance of NetCrawlerManager with a specified
@@ -84,34 +87,44 @@ public class JUT_MFC_NetCrawlerManager {
 	
 	/**
 	 * Protozoa Sprint 01
-	 * The purpose of this test is to ensure the crawler visits 1 site then follows it to 4 more sites.
+	 * The purpose of this test is to ensure the crawler visits 1 site in the bucket then follows it to 4 more bucket sites.
 	 * 
 	 */
 	@Test
 	public void Run_HTMLDocWith4Links_Visit5Sites() throws Exception {
 		// Test Variables
 		// create expected array as a Collection
-		Collection<String> expectedLinkArray = new ArrayList<String>();
-		expectedLinkArray.add("http://www.base.com");
-		expectedLinkArray.add("http://www.link1.com");
-		expectedLinkArray.add("http://www.link2.com");
-		expectedLinkArray.add("http://www.link3.com");
-		expectedLinkArray.add("http://www.link3-1.com");
-		String testFileName, testFilePath;
+		Collection<String> expectedURLs = new ArrayList<String>(),
+				actualURLs = new ArrayList<String>();
+		String testFileName, link1FileName, link2FileName, link3FileName, link3_1FileName;
+		String testFilePath, link1FilePath, link2FilePath, link3FilePath, link3_1FilePath;
+		String testFileBaseURI;
 		MFC_NetCrawlerManager netCrawlerManager;
+		URL url;
 		// Expected
 		testFileName = "HTMLTest_RelativeReferences.html"; // name of file
-		testFilePath = loader.getResource(htmlResourceFolder + testFileName).getPath();
+		link1FileName = "LinkedHTMLFile1.html";
+		link2FileName = "LinkedHTMLFile2.html";
+		link3FileName = "LinkedHTMLFile3.html";
+		link3_1FileName = "LinkedHTMLFile3-1.html";
+		testFilePath = bucketName + testFileName;
+		link1FilePath = bucketName + link1FileName;
+		link2FilePath = bucketName + link2FileName;
+		link3FilePath = bucketName + link3FileName;
+		link3_1FilePath = bucketName + link3_1FileName;
+		testFileBaseURI = testFilePath.replace(testFileName, "");
+		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath, link3_1FilePath));
 		// Actual
-		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, true);
+		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, 5);
 		//TODO set NCM to be constructed with a limit of 5 then shutdown
 		netCrawlerManager.run();
 		// create actual array
 		MFC_NetCrawler netCrawler = new MFC_NetCrawler(testFilePath);
 		netCrawler.call();
-		Collection<String> actualLinkArray = netCrawler.getURLs();
+		actualURLs = netCrawler.getURLs();
+		System.out.println("actualURLs:" + actualURLs.toString());
 		// Test
-		assertEquals(expectedLinkArray, actualLinkArray);
+		assertEquals(expectedURLs, actualURLs);
 	}
 
 }
