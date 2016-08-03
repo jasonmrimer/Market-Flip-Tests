@@ -22,15 +22,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (1)"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/marketflip-application.jar"/>
-	<classpathentry kind="lib" path="lib/marketflip-sharedassets.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipCrawler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipApplication"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipSharedAssets"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

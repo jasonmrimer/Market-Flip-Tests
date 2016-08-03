@@ -113,7 +113,7 @@ public class JUT_MFC_NetCrawlerManager {
 		link3FilePath = bucketName + link3FileName;
 		link3_1FilePath = bucketName + link3_1FileName;
 		testFileBaseURI = testFilePath.replace(testFileName, "");
-		expectedURLs.addAll(Arrays.asList(link1FilePath, link2FilePath, link3FilePath, link3_1FilePath));
+		expectedURLs.addAll(Arrays.asList(testFilePath, link1FilePath, link2FilePath, link3FilePath, link3_1FilePath));
 		// Actual
 		netCrawlerManager = new MFC_NetCrawlerManager(bqMFSourceCode, testFilePath, 5);
 		//TODO set NCM to be constructed with a limit of 5 then shutdown
