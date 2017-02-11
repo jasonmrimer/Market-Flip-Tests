@@ -22,7 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (1)"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -32,5 +31,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipCrawler"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipApplication"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MarketFlipSharedAssets"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
