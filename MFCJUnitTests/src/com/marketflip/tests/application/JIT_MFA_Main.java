@@ -23,7 +23,7 @@ import com.marketflip.shared.products.MF_Product;
 import com.marketflip.shared.shopper.MF_PricePoint;
 import com.marketflip.shared.shopper.MF_Shopper;
 import com.marketflip.shared.shopper.MF_ShopperDAO;
-
+//TODO remove temp change to commit for worktree fix 20170212 committing Sprint01HB to Protozoa
 /**
  * This test case runs integrations tests for the main class of Market Flip Application, effectively running the entire application with real connections to external sources.
  *
