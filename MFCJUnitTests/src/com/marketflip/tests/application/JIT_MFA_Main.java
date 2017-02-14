@@ -1,5 +1,6 @@
 package com.marketflip.tests.application;
 // 
+// adding new computer
 import static org.junit.Assert.*;
 
 import java.util.concurrent.ArrayBlockingQueue;

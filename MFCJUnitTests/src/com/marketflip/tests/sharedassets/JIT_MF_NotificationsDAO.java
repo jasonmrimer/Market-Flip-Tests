@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.protos.cloud.sql.Client.TupleProto;
 import com.marketflip.shared.products.MF_Product;
 import com.marketflip.shared.shopper.MF_NotificationsDAO;
 import com.marketflip.shared.shopper.MF_PricePoint;
